@@ -1,18 +1,28 @@
 # AXON SEC
 Network threat detector — early beta
 
-## What it detects
-Tested on a real VPS (Hetzner):
+## What it does
+Layer 3/4 network threat detection.
+Designed for scan-heavy environments.
+
+Detects well:
 - RDP scanning (port 3389)
 - VNC scanning (port 5910)
-- Masscan/ZMap (SEW flag)
+- Masscan/ZMap (SEW TCP flag)
 - Mirai bots (port 23)
+- SYN flood / port scanning
+
+Does NOT detect:
+- HTTP layer attacks (DoS Hulk, Slowloris)
+- Application layer exploits
+- Payload-based attacks
 
 ## Honest metrics
+- Tested on own VPS (Hetzner):
+  303 IPs blocked automatically
+  in 24 hours of real traffic
 - F1=83.5% on NSL-KDD dataset
-- F1=53% on external CICIDS2017 data
-- False positive rate is high on external networks
-- Works best on scan-heavy traffic
+- Not validated on enterprise networks yet
 
 ## Try it
 Upload a CSV to https://axonsec.net
@@ -20,11 +30,11 @@ Upload a CSV to https://axonsec.net
 
 ## CSV format
 src_ip,dst_port,bytes,flow_rate,duracion,paquetes,hora
-185.220.101.5,3389,0,1.0,0.001,1,14
 
 ## Status
-Early beta. Not production ready.
-Looking for feedback on real networks.
+Early beta. L3/L4 domain only.
+Looking for feedback from sysadmins
+with exposed servers.
 
 ## Contact
 alberto@axonsec.net
