@@ -1,40 +1,46 @@
-# AXON SEC
-Network threat detector — early beta
+# AXON SEC v4.0
+Network Detection & Response — ultraligero
 
-## What it does
-Layer 3/4 network threat detection.
-Designed for scan-heavy environments.
+## Qué es
+Motor de detección perimetral L3/L4
+con análisis comportamental temporal.
 
-Detects well:
-- RDP scanning (port 3389)
-- VNC scanning (port 5910)
+NDR ultraligero que funciona en un VPS
+de 3.29€/mes con capacidades equivalentes
+a soluciones empresariales de miles de euros.
+
+## Qué detecta
+
+### L3/L4 — verificado en producción:
+- RDP scanning (puerto 3389)
+- VNC scanning (puerto 5910)
 - Masscan/ZMap (SEW TCP flag)
-- Mirai bots (port 23)
-- SYN flood / port scanning
+- Mirai botnets (puerto 23)
+- SYN flood coordinado
 
-Does NOT detect:
-- HTTP layer attacks (DoS Hulk, Slowloris)
-- Application layer exploits
-- Payload-based attacks
+### Análisis comportamental temporal:
+- Beaconing C2 — malware comunicando
+- Slow Scan APT — reconocimiento sigiloso
+- Clasificación BOTNET/APT/SCANNER/HUMANO
+- Autenticación inteligente (HUMANO vs BOT)
 
-## Honest metrics
-- Tested on own VPS (Hetzner):
-  303 IPs blocked automatically
-  in 24 hours of real traffic
-- F1=83.5% on NSL-KDD dataset
-- Not validated on enterprise networks yet
+## Lo que NO detecta
+- Ataques HTTP/L7 (use un WAF)
+- SQL injection, XSS (use un WAF)
+- Contenido de paquetes cifrados
 
-## Try it
-Upload a CSV to https://axonsec.net
-(free, no account needed)
+## Métricas reales — servidor Hetzner
+- 1.077.232 paquetes analizados
+- 15.258 IPs bloqueadas y clasificadas
+- 43 rutas de ataque mapeadas
+- 1 Beacon C2 real detectado
+- 16 Slow Scans APT reales
 
-## CSV format
-src_ip,dst_port,bytes,flow_rate,duracion,paquetes,hora
+## Pruébalo
+App web: https://axonsec.net (gratis)
+Docs: github.com/albertoariza522/axonsec-app
 
-## Status
-Early beta. L3/L4 domain only.
-Looking for feedback from sysadmins
-with exposed servers.
-
-## Contact
-alberto@axonsec.net
+## Busco
+Sysadmins con servidores expuestos
+para validación externa real.
+Contacto: alberto@axonsec.net
